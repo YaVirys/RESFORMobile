@@ -76,7 +76,7 @@ else if(timeLeft<=0)winStage();
 updateHud();
 }
 function winStage(){
-playing=false;ready=true;state.level++;state.health=Math.min(state.maxHealth,state.health+1);state.fuel=Math.min(100,state.fuel+21);save();
+playing=false;ready=true;state.level++;state.health=Math.min(state.maxHealth,state.health+1);state.fuel=Math.max(55,Math.min(100,state.fuel+36));save();
 const just=stages[state.level-1];if(state.level>=12){finish();return;}
 present('Остановка пройдена! '+just.emoji,just.quote+' Собрано сердечек: '+state.hearts+'. Впереди: '+stages[state.level].name+'.','🏁💗','В СЛЕДУЮЩИЙ ЭТАП →','upgrade');
 }
