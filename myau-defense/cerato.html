@@ -102,7 +102,7 @@ for(const p of particles){ctx.globalAlpha=Math.max(0,p.life);ctx.font='20px syst
 if(night){ctx.fillStyle='#07183223';ctx.fillRect(0,0,W,H)}
 ctx.setTransform(1,0,0,1,0,0);
 }
-function resize(){const dpr=Math.min(2,window.devicePixelRatio||1);window.devicePixelRatio=window.devicePixelRatio||1;can.width=Math.max(1,Math.floor(can.clientWidth*dpr));can.height=Math.max(1,Math.floor(can.clientHeight*dpr));devicePixelRatio=dpr}
+function resize(){const dpr=Math.min(2,window.devicePixelRatio||1);can.width=Math.max(1,Math.floor(can.clientWidth*dpr));can.height=Math.max(1,Math.floor(can.clientHeight*dpr));devicePixelRatio=dpr}
 let devicePixelRatio=1;
 function loop(now){if(!last)last=now;let dt=Math.min(.05,(now-last)/1000);last=now;step(dt);draw();raf=requestAnimationFrame(loop)}
 function holdKey(id,which){const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture?.(e.pointerId);if(which==='brake'){press.brake=true;b.classList.add('pressed');return}changeLane(which==='left'?-1:1);press[which]=true;hold=.25;b.classList.add('pressed')});for(const e of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(e,()=>{press[which]=false;b.classList.remove('pressed')})}
