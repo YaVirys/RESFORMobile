@@ -1,0 +1,117 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#286a86"><title>Cerato: курс на свидание — Зая & Зайка</title><style>
+:root{color-scheme:dark;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}html,body{margin:0;width:100%;min-height:100dvh;background:#193b51;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden;touch-action:manipulation}button{font:inherit;cursor:pointer;touch-action:manipulation}a{text-decoration:none;color:inherit}#root{height:100dvh;max-width:520px;margin:auto;display:flex;flex-direction:column;position:relative;overflow:hidden;background:#4fa1a4;box-shadow:0 0 40px #0005}.top{padding:calc(8px + env(safe-area-inset-top)) 12px 8px;background:linear-gradient(160deg,#24546a,#1b425b);box-shadow:0 3px 12px #112b4288;z-index:3}.row{display:flex;align-items:center;gap:9px;justify-content:space-between}.back{font-size:12px;background:#ffffff18;padding:9px 10px;border-radius:12px;border:1px solid #ffffff42;font-weight:800}.level{font-size:13px;font-weight:950}.top small{color:#c5edfb;font-size:11px}.pbar{height:7px;background:#ffffff30;border-radius:9px;margin-top:9px;overflow:hidden}.pbar>div{height:100%;background:linear-gradient(90deg,#ffe4ab,#ff97ce);border-radius:9px;width:0%;transition:width .2s}.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;margin-top:9px}.stat{background:#ffffff19;border-radius:11px;padding:7px 6px;text-align:center;font-size:12px;font-weight:800}.stat b{color:#ffe4a8}.playfield{flex:1;min-height:0;position:relative}canvas{width:100%;height:100%;display:block;touch-action:none}.controls{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;background:#213c56;padding:9px 15px calc(12px + env(safe-area-inset-bottom));flex-shrink:0}.ctrl{background:linear-gradient(#b5eeff,#7bceeb);border:3px solid #3689a9;border-bottom:6px solid #286c93;border-radius:18px;color:#285873;font-size:27px;font-weight:1000;min-height:62px;user-select:none;-webkit-user-select:none}.ctrl.brake{background:linear-gradient(#ffe6d9,#ffb9ac);border-color:#cd7b7b;border-bottom-color:#a35e69;color:#904e63;font-size:16px}.ctrl:active,.ctrl.pressed{transform:translateY(3px);border-bottom-width:3px}.overlay{position:absolute;inset:0;z-index:6;background:#122d47e6;display:flex;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(6px)}.overlay.hidden{display:none}.modal{background:#fbf8ff;color:#3c5363;border-radius:25px;padding:22px 19px;max-width:390px;width:100%;text-align:center;box-shadow:0 16px 40px #0919239c;max-height:88%;overflow:auto}.hero{font-size:65px;filter:drop-shadow(0 6px 3px #0002)}h1{font-size:25px;color:#367ca2;line-height:1.16;letter-spacing:-.035em;margin:9px 0}p{font-size:13px;line-height:1.5;color:#627988}.tip{background:#e8f4ff;color:#3a7493;border-radius:14px;padding:12px;font-size:12px;line-height:1.45;font-weight:700;margin:15px 0}.primary{background:linear-gradient(#ffc2dc,#f28aaf);color:#723855;border:2px solid #bc6e9f;border-bottom:5px solid #a55d85;border-radius:16px;width:100%;min-height:51px;font-weight:1000;font-size:15px}.upgrade{width:100%;text-align:left;background:#eff8ff;border:2px solid #b7d8ed;color:#3c6983;padding:11px 12px;border-radius:14px;margin:6px 0;display:flex;justify-content:space-between;align-items:center;gap:6px}.upgrade strong{font-size:13px}.upgrade small{font-size:11px}.upgrade:active{background:#cdeafa}.small{font-size:11px;color:#7991a0}.mid{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}.pause{background:#ffffff29;border:1px solid #ffffff55;color:#fff;border-radius:9px;padding:7px 10px;font-weight:900}.floating{position:absolute;top:16px;left:50%;transform:translateX(-50%);border-radius:24px;background:#122e4bb7;color:#fff6cf;padding:9px 13px;z-index:2;font-weight:850;font-size:13px;pointer-events:none;text-align:center;max-width:92%;opacity:0;transition:opacity .25s}.floating.show{opacity:1}@media(max-height:650px){.top{padding-top:6px}.stat{padding:4px}.controls{padding-top:6px}.ctrl{min-height:50px}.hero{font-size:45px}.modal{padding:14px}h1{font-size:21px}}
+</style></head><body><div id="root"><div class="top"><div class="row"><a class="back" href="./index.html">← Игры</a><div class="level" id="stage">ЭТАП 1 / 12</div><button class="pause" id="pauseBtn">Ⅱ</button></div><div class="mid"><small id="place">ВК Знакомства → первое свидание</small><small id="countdown">00:55</small></div><div class="pbar"><div id="progress"></div></div><div class="stats"><div class="stat">❤️ <b id="health">5 / 5</b></div><div class="stat">💝 <b id="hearts">0</b></div><div class="stat">⛽ <b id="fuel">100%</b></div></div></div><div class="playfield"><canvas id="road"></canvas><div class="floating" id="toast">+1 💖</div></div><div class="controls"><button class="ctrl" id="left" aria-label="Налево">◀</button><button class="ctrl brake" id="brake">ТОРМОЗ</button><button class="ctrl" id="right" aria-label="Направо">▶</button></div><div class="overlay" id="overlay"><div class="modal"><div class="hero" id="face">🚙💞</div><h1 id="modalTitle">Cerato: курс на свидание</h1><p id="modalText">12 остановок, много приключений и самая важная пассажирка — зайка Анжелика!</p><div class="tip" id="tip">Нажимай ◀ и ▶, чтобы перестраиваться. Удерживай ТОРМОЗ перед препятствиями. Собирай 💖, ⛽ и 🛠️. Каждый этап длится около 55 секунд.</div><div id="upgrades"></div><button class="primary" id="start">ПОЕХАЛИ! 🚗</button><div class="small" style="margin-top:9px" id="hint">Игра сохраняет пройденные этапы</div></div></div></div>
+<script>
+(()=>{'use strict';
+const $=id=>document.getElementById(id),can=$('road'),ctx=can.getContext('2d');
+const W=420,H=690,laneX=[125,210,295],saveKey='loveCeratoSave';
+const stages=[
+{name:'Первое свидание',from:'ВК Знакомства',dest:'Первая встреча',emoji:'💌',color:'#74c8b8',quote:'Зая наконец-то встретил зайку!'},
+{name:'Вечерняя прогулка',from:'Центр Омска',dest:'Прогулка',emoji:'🌙',color:'#6196c8',quote:'Пока ехали, успели обсудить вообще всё.'},
+{name:'Звонки на сборах',from:'Омск',dest:'На связь',emoji:'📞',color:'#718dc9',quote:'Несколько часов разговора? Легко!'},
+{name:'День рождения папы',from:'Поездка к семье',dest:'Знакомство',emoji:'🎂',color:'#ae8bc9',quote:'Волновался, а всё прошло отлично.'},
+{name:'Кукурузная миссия',from:'Город',dest:'Поле',emoji:'🌽',color:'#98c681',quote:'Всё ради нашей легендарной кукурузы!'},
+{name:'Дорога в Тару',from:'Омск',dest:'Тара',emoji:'🛣️',color:'#64adbf',quote:'Только бы не забыть про ручник!'},
+{name:'Шашлычка зовёт',from:'Путешествие',dest:'Мангал',emoji:'🍖',color:'#e49b83',quote:'Любовь — это совместный выбор шашлыка.'},
+{name:'Рёбра мечты',from:'Город',dest:'Любимое кафе',emoji:'🥩',color:'#e3b689',quote:'Спасаем кошелёк от злых ценников.'},
+{name:'Дождливое свидание',from:'Омск',dest:'Уютный дом',emoji:'☔',color:'#7ea8c6',quote:'Даже дождь — это романтично.'},
+{name:'Маленькое путешествие',from:'Омск',dest:'Природа',emoji:'🌲',color:'#6db2a3',quote:'Любимое место — рядом с тобой.'},
+{name:'Ночное возвращение',from:'Шоссе',dest:'Дом',emoji:'🌌',color:'#7f88bc',quote:'Спокойно, зая довезёт.'},
+{name:'Финальная поездка',from:'Все приключения',dest:'Наше счастье',emoji:'💘',color:'#d39ec0',quote:'Самое важное — добраться друг до друга.'}
+];
+let state={level:0,hearts:0,health:5,maxHealth:5,fuel:100,shield:0,magnet:0,handling:0},cars=[],particles=[],lane=1,carX=210,timeLeft=55,roadPhase=0,elapsed=0,spawnIn=0,invincible=0,boost=0,playing=false,ready=true,last=0,raf=0,press={left:false,right:false,brake:false},hold=0,toastUntil=0,gameOver=false,completed=false;
+try{const prev=JSON.parse(localStorage.getItem(saveKey)||'null');if(prev&&Number.isInteger(prev.level)&&prev.level>=0&&prev.level<12)state={...state,...prev,health:Math.max(1,prev.health||5),fuel:Math.max(55,prev.fuel||100)};}catch{}
+const save=()=>{try{localStorage.setItem(saveKey,JSON.stringify(state))}catch{}};
+function message(txt){$('toast').textContent=txt;$('toast').classList.add('show');toastUntil=performance.now()+1500}
+function present(title,description,emoji,btn,kind='intro'){$('modalTitle').textContent=title;$('modalText').textContent=description;$('face').textContent=emoji;$('start').textContent=btn;$('overlay').classList.remove('hidden');playing=false;ready=true;const upgrades=$('upgrades');upgrades.replaceChildren();
+ if(kind==='upgrade'){
+ $('tip').textContent='Выбери одно улучшение. Оно останется с тобой до конца путешествия.';
+ const offers=[['🛡️ Крепче любовь','+1 к максимуму прочности',()=>{state.maxHealth=Math.min(9,state.maxHealth+1);state.health=Math.min(state.maxHealth,state.health+1)}],['🧲 Магнит для сердечек','Легче подбирать бонусы',()=>{state.magnet=Math.min(3,state.magnet+1)}],['🎮 Уверенное управление','Перестраиваться немного легче',()=>{state.handling=Math.min(3,state.handling+1);state.health=Math.min(state.maxHealth,state.health+1)}]];
+ for(const [label,sub,act] of offers){let b=document.createElement('button');b.className='upgrade';b.innerHTML='<strong>'+label+'</strong><small>'+sub+'</small>';b.addEventListener('click',()=>{act();save();upgrades.replaceChildren();$('tip').textContent='✅ Улучшение выбрано! Можешь ехать дальше.'});upgrades.appendChild(b)}
+ }else $('tip').textContent=kind==='finish'?'Зайка и зая добрались до финального свидания.':'Управление: ◀ ▶ — смена полосы, ТОРМОЗ — снижение скорости. 💖 — очки, ⛽ — топливо, 🛠️ — ремонт. Этап длится 55 секунд.';
+}
+function stageStart(){
+if(state.level>=12){finish();return}
+$('overlay').classList.add('hidden');playing=true;ready=false;cars=[];particles=[];lane=1;carX=laneX[1];roadPhase=0;timeLeft=55;spawnIn=.75;invincible=1.2;hold=0;last=performance.now();$('stage').textContent='ЭТАП '+(state.level+1)+' / 12';$('place').textContent=stages[state.level].from+' → '+stages[state.level].dest;updateHud();
+}
+function updateHud(){$('stage').textContent='ЭТАП '+(state.level+1)+' / 12';$('health').textContent=state.health+' / '+state.maxHealth;$('hearts').textContent=state.hearts;$('fuel').textContent=Math.round(state.fuel)+'%';$('countdown').textContent='00:'+String(Math.max(0,Math.ceil(timeLeft))).padStart(2,'0');$('progress').style.width=(100-(timeLeft/55)*100)+'%';}
+function newObstacle(){
+let rn=Math.random(),kind=rn<.19?'heart':rn<.24?'fuel':rn<.30?'repair':rn<.59?'cone':rn<.79?'hole':'car';
+if(state.level>6&&rn>.87)kind='car';
+cars.push({lane:Math.floor(Math.random()*3),y:-55,kind,passed:false,phase:Math.random()*6});
+}
+function flash(kind,x,y){for(let i=0;i<9;i++)particles.push({x,y,vx:(Math.random()-.5)*130,vy:(Math.random()-.5)*140,life:.6,emoji:kind})}
+function changeLane(dir){if(!playing)return;lane=Math.min(2,Math.max(0,lane+dir));press.left=press.right=false;try{navigator.vibrate?.(9)}catch{}}
+function collide(o){
+if(o.kind==='heart'){state.hearts++;message('+1 💖 Зайка радуется!');flash('💖',carX,495)}
+else if(o.kind==='fuel'){state.fuel=Math.min(100,state.fuel+28);message('⛽ Бак пополнен!')}
+else if(o.kind==='repair'){state.health=Math.min(state.maxHealth,state.health+1);message('🛠️ Cerato подлечился!')}
+else if(invincible<=0){
+const blocking=press.brake&&Math.random()<.64;
+if(blocking){message('🛑 Успел притормозить!');flash('✨',carX,492);return;}
+state.health-=o.kind==='car'&&state.level>8?2:1;invincible=1.45;
+state.fuel=Math.max(0,state.fuel-3);message('💥 '+(o.kind==='hole'?'Вот это яма!':'Аккуратнее, зая!'));flash('💥',carX,495);
+}
+}
+function step(dt){
+if(!playing)return;
+const braking=press.brake,speed=(braking?90:210+state.level*12),spawnSpeed=braking?.48:1;
+timeLeft=Math.max(0,timeLeft-dt);
+roadPhase+=dt*speed;elapsed+=dt;invincible=Math.max(0,invincible-dt);boost=Math.max(0,boost-dt);
+if(press.left){hold-=dt;if(hold<=0){changeLane(-1);hold=.22+state.handling*.012;press.left=true}}
+if(press.right){hold-=dt;if(hold<=0){changeLane(1);hold=.22+state.handling*.012;press.right=true}}
+carX+=(laneX[lane]-carX)*Math.min(1,dt*(10+state.handling*2));
+state.fuel=Math.max(0,state.fuel-dt*(braking?.24:.48+state.level*.017));
+spawnIn-=dt*spawnSpeed;
+if(spawnIn<=0){newObstacle();spawnIn=Math.max(.55,1.52-state.level*.055)+Math.random()*.48}
+for(const o of cars){o.y+=speed*dt;o.phase+=dt*2;
+ const sameLane=Math.abs(laneX[o.lane]-carX)<(o.kind==='heart'?44+state.magnet*11:37);
+ if(!o.passed&&o.y>470&&o.y<530&&sameLane){o.passed=true;collide(o);}
+}
+cars=cars.filter(o=>o.y<760&&!o.passed);
+for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt;}particles=particles.filter(p=>p.life>0);
+if(toastUntil&&performance.now()>toastUntil){$('toast').classList.remove('show');toastUntil=0}
+if(state.health<=0||state.fuel<=0){gameOver=true;present('Ой, Cerato устал!','Кажется, нужно сделать остановку. Попробуй этот этап ещё раз: твой прогресс до него сохранён.','🥺🚗','ПОПРОБОВАТЬ СНОВА ↻','retry');state.health=Math.max(3,state.maxHealth-1);state.fuel=90;cars=[];save()}
+else if(timeLeft<=0)winStage();
+updateHud();
+}
+function winStage(){
+playing=false;ready=true;state.level++;state.health=Math.min(state.maxHealth,state.health+1);state.fuel=Math.min(100,state.fuel+21);save();
+const just=stages[state.level-1];if(state.level>=12){finish();return;}
+present('Остановка пройдена! '+just.emoji,just.quote+' Собрано сердечек: '+state.hearts+'. Впереди: '+stages[state.level].name+'.','🏁💗','В СЛЕДУЮЩИЙ ЭТАП →','upgrade');
+}
+function finish(){
+playing=false;ready=true;completed=true;state.level=12;save();
+present('Зайка, мы доехали!','12 остановок, '+state.hearts+' сердечек и примерно 11 минут совместного путешествия. Куда бы Cerato ни ехал, лучшее место всегда рядом с тобой.','🚙💖🐰','НОВОЕ ПУТЕШЕСТВИЕ ↻','finish');
+}
+function round(x,y,w,h,r,col){ctx.fillStyle=col;ctx.beginPath();ctx.roundRect(x,y,w,h,r);ctx.fill()}
+function draw(){
+const width=can.clientWidth||420,height=can.clientHeight||580,scale=Math.min(width/W,height/H),ox=(width-W*scale)/2,oy=(height-H*scale)/2;
+ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);ctx.clearRect(0,0,width,height);ctx.translate(ox,oy);ctx.scale(scale,scale);
+const level=stages[Math.min(11,state.level)],night=[1,2,8,10].includes(state.level);
+ctx.fillStyle=level.color;ctx.fillRect(0,0,W,H);
+for(let k=0;k<17;k++){let y=((k*69+roadPhase*.7)%780)-60;ctx.fillStyle=(night?'#254e74':'#507e62');ctx.beginPath();ctx.arc(26+Math.sin(k*9)*10,y,17+(k%3)*5,0,Math.PI*2);ctx.fill();ctx.beginPath();ctx.arc(395+Math.cos(k*4)*8,y+33,22,0,Math.PI*2);ctx.fill();}
+round(64,-10,292,H+20,8,night?'#344459':'#555963');round(71,-10,278,H+20,6,night?'#414f65':'#626771');
+ctx.strokeStyle=night?'#e2c99a':'#e8e5cd';ctx.lineWidth=5;ctx.setLineDash([25,36]);ctx.lineDashOffset=roadPhase*.85;for(const x of [167,253]){ctx.beginPath();ctx.moveTo(x,-20);ctx.lineTo(x,H+20);ctx.stroke()}ctx.setLineDash([]);
+for(const x of [74,347]){ctx.strokeStyle='#ffe9b9';ctx.lineWidth=5;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}
+ctx.font='23px system-ui';ctx.textAlign='center';for(let k=0;k<11;k++){let y=(k*84+roadPhase*.85)%800-60;ctx.fillText((k%2)?'🌻':'🌿',28,y);ctx.fillText((k%3)?'🌲':'🌸',392,y);}
+for(const o of cars){ctx.save();ctx.translate(laneX[o.lane],o.y);ctx.shadowColor='#1f2d3966';ctx.shadowBlur=10;ctx.shadowOffsetY=6;ctx.font=(o.kind==='car'?49:42)+'px system-ui,Apple Color Emoji,Segoe UI Emoji';ctx.textAlign='center';const emoji={heart:'💖',fuel:'⛽',repair:'🛠️',cone:'🚧',hole:'🕳️',car:'🚕'}[o.kind];ctx.fillText(emoji,0,13);ctx.restore()}
+ctx.save();ctx.translate(carX,500);if(invincible>0&&Math.sin(performance.now()*.032)>0)ctx.globalAlpha=.48;
+ctx.fillStyle='#0005';ctx.beginPath();ctx.ellipse(0,31,35,14,0,0,Math.PI*2);ctx.fill();round(-32,-43,64,85,13,'#c2eef9');round(-28,-48,56,82,12,'#94d1e9');round(-24,-36,48,27,8,'#5197b7');round(-22,6,44,20,8,'#5798b6');round(-30,22,10,17,3,'#ffe6a1');round(20,22,10,17,3,'#ffe6a1');round(-34,-29,7,20,3,'#384c56');round(27,-29,7,20,3,'#384c56');ctx.font='24px system-ui';ctx.textAlign='center';ctx.fillText('💗',0,10);ctx.restore();
+for(const p of particles){ctx.globalAlpha=Math.max(0,p.life);ctx.font='20px system-ui';ctx.fillText(p.emoji,p.x,p.y)}ctx.globalAlpha=1;
+if(night){ctx.fillStyle='#07183223';ctx.fillRect(0,0,W,H)}
+ctx.setTransform(1,0,0,1,0,0);
+}
+function resize(){const dpr=Math.min(2,window.devicePixelRatio||1);window.devicePixelRatio=window.devicePixelRatio||1;can.width=Math.max(1,Math.floor(can.clientWidth*dpr));can.height=Math.max(1,Math.floor(can.clientHeight*dpr));devicePixelRatio=dpr}
+let devicePixelRatio=1;
+function loop(now){if(!last)last=now;let dt=Math.min(.05,(now-last)/1000);last=now;step(dt);draw();raf=requestAnimationFrame(loop)}
+function holdKey(id,which){const b=$(id);b.addEventListener('pointerdown',e=>{e.preventDefault();b.setPointerCapture?.(e.pointerId);if(which==='brake'){press.brake=true;b.classList.add('pressed');return}changeLane(which==='left'?-1:1);press[which]=true;hold=.25;b.classList.add('pressed')});for(const e of ['pointerup','pointercancel','lostpointercapture'])b.addEventListener(e,()=>{press[which]=false;b.classList.remove('pressed')})}
+holdKey('left','left');holdKey('right','right');holdKey('brake','brake');
+window.addEventListener('keydown',e=>{if(e.repeat)return;if(['ArrowLeft','ArrowRight','ArrowDown',' ','a','d','s'].includes(e.key))e.preventDefault();if(e.key==='ArrowLeft'||e.key.toLowerCase()==='a')changeLane(-1);if(e.key==='ArrowRight'||e.key.toLowerCase()==='d')changeLane(1);if(e.key==='ArrowDown'||e.key.toLowerCase()==='s')press.brake=true;if(e.key==='Escape')$('pauseBtn').click()});
+window.addEventListener('keyup',e=>{if(e.key==='ArrowDown'||e.key.toLowerCase()==='s')press.brake=false});
+$('pauseBtn').addEventListener('click',()=>{if(!playing)return;present('Перерыв на объятия','Cerato припаркован. Можешь продолжить в любой момент.','💞','ПРОДОЛЖИТЬ ▶','pause')});
+$('start').addEventListener('click',()=>{if(completed){state={level:0,hearts:0,health:5,maxHealth:5,fuel:100,shield:0,magnet:0,handling:0};completed=false;save()}if(gameOver)gameOver=false;if($('modalTitle').textContent==='Перерыв на объятия'){playing=true;ready=false;$('overlay').classList.add('hidden');last=performance.now();return;}stageStart()});
+if(state.level>=12){state.level=0;save()}const current=stages[state.level];present('Cerato: курс на свидание','12 этапов. Первый пункт — '+current.name+'. Зайка, пристегнулась?','🚙💕','ПОЕХАЛИ! 🚗','intro');
+window.addEventListener('resize',resize);resize();requestAnimationFrame(loop);
+})();
+</script></body></html>
